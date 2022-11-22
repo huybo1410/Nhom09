@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Nhom09.Areas.Admin.Controllers
+namespace Nhom09.Controllers
 {
-    public class HomeController : Controller
+    public class Product_DetailController : Controller
     {
         public IActionResult Index()
         {
