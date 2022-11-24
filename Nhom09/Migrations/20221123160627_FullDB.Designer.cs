@@ -12,8 +12,8 @@ using Nhom09.Data;
 namespace Nhom09.Migrations
 {
     [DbContext(typeof(shopsamsungContext))]
-    [Migration("20221122073422_Init")]
-    partial class Init
+    [Migration("20221123160627_FullDB")]
+    partial class FullDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -159,6 +159,9 @@ namespace Nhom09.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Price")
                         .HasColumnType("real");

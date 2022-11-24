@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Nhom09.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class FullDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -92,6 +92,7 @@ namespace Nhom09.Migrations
                     Price = table.Column<float>(type: "real", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Producttypeid = table.Column<int>(name: "Product_type_id", type: "int", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProducttypeId = table.Column<int>(name: "Product_typeId", type: "int", nullable: true)
                 },
                 constraints: table =>
