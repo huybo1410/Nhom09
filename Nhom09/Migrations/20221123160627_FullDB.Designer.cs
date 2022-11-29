@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nhom09.Data;
 
@@ -11,9 +12,11 @@ using Nhom09.Data;
 namespace Nhom09.Migrations
 {
     [DbContext(typeof(shopsamsungContext))]
-    partial class shopsamsungContextModelSnapshot : ModelSnapshot
+    [Migration("20221123160627_FullDB")]
+    partial class FullDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace Nhom09.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Nhom09.Models.Admin", b =>
+            modelBuilder.Entity("Nhom09.Models.admin", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,24 +37,20 @@ namespace Nhom09.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Sex")
                         .HasColumnType("bit");
 
                     b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admins");
+                    b.ToTable("admins");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.Customer", b =>
+            modelBuilder.Entity("Nhom09.Models.customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,31 +61,30 @@ namespace Nhom09.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("Birthday")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Customer_name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("Phone_number")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Sex")
                         .HasColumnType("bit");
 
                     b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("customers");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.Invoice", b =>
+            modelBuilder.Entity("Nhom09.Models.invoice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,29 +95,29 @@ namespace Nhom09.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Code")
+                    b.Property<string>("Customer_Id")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Phone")
+                    b.Property<string>("Phone_number")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Purchase_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Total")
+                    b.Property<float>("Total_price")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("customerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("customerId");
 
-                    b.ToTable("Invoices");
+                    b.ToTable("invoices");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.InvoiceDetail", b =>
+            modelBuilder.Entity("Nhom09.Models.invoice_detail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -127,71 +125,67 @@ namespace Nhom09.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("InvoiceId")
+                    b.Property<int>("Invoice_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Product_id")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int?>("invoiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("productId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("InvoiceId");
+                    b.HasIndex("invoiceId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("productId");
 
-                    b.ToTable("InvoiceDetails");
+                    b.ToTable("invoice_details");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.Product", b =>
+            modelBuilder.Entity("Nhom09.Models.product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Chip")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Product_name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Pin")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Price")
+                    b.Property<int?>("Product_typeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductTypeId")
+                    b.Property<int>("Product_type_id")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("RAM")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ScreenSize")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductTypeId");
+                    b.HasIndex("Product_typeId");
 
-                    b.ToTable("Products");
+                    b.ToTable("products");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.ProductType", b =>
+            modelBuilder.Entity("Nhom09.Models.product_type", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -199,74 +193,65 @@ namespace Nhom09.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Product_type_name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductTypes");
+                    b.ToTable("product_types");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.Invoice", b =>
+            modelBuilder.Entity("Nhom09.Models.invoice", b =>
                 {
-                    b.HasOne("Nhom09.Models.Customer", "Customer")
-                        .WithMany("Invoices")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Nhom09.Models.customer", "customer")
+                        .WithMany("invoices")
+                        .HasForeignKey("customerId");
 
-                    b.Navigation("Customer");
+                    b.Navigation("customer");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.InvoiceDetail", b =>
+            modelBuilder.Entity("Nhom09.Models.invoice_detail", b =>
                 {
-                    b.HasOne("Nhom09.Models.Invoice", "Invoice")
+                    b.HasOne("Nhom09.Models.invoice", "invoice")
                         .WithMany("Invoice_Details")
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("invoiceId");
 
-                    b.HasOne("Nhom09.Models.Product", "Product")
-                        .WithMany("Invoice_Details")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Nhom09.Models.product", "product")
+                        .WithMany("invoice_Details")
+                        .HasForeignKey("productId");
 
-                    b.Navigation("Invoice");
+                    b.Navigation("invoice");
 
-                    b.Navigation("Product");
+                    b.Navigation("product");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.Product", b =>
+            modelBuilder.Entity("Nhom09.Models.product", b =>
                 {
-                    b.HasOne("Nhom09.Models.ProductType", "ProductType")
-                        .WithMany("Products")
-                        .HasForeignKey("ProductTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Nhom09.Models.product_type", "Product_type")
+                        .WithMany("products")
+                        .HasForeignKey("Product_typeId");
 
-                    b.Navigation("ProductType");
+                    b.Navigation("Product_type");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.Customer", b =>
+            modelBuilder.Entity("Nhom09.Models.customer", b =>
                 {
-                    b.Navigation("Invoices");
+                    b.Navigation("invoices");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.Invoice", b =>
+            modelBuilder.Entity("Nhom09.Models.invoice", b =>
                 {
                     b.Navigation("Invoice_Details");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.Product", b =>
+            modelBuilder.Entity("Nhom09.Models.product", b =>
                 {
-                    b.Navigation("Invoice_Details");
+                    b.Navigation("invoice_Details");
                 });
 
-            modelBuilder.Entity("Nhom09.Models.ProductType", b =>
+            modelBuilder.Entity("Nhom09.Models.product_type", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("products");
                 });
 #pragma warning restore 612, 618
         }

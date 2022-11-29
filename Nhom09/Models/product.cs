@@ -1,18 +1,45 @@
-﻿namespace Nhom09.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+
+namespace Nhom09.Models
 {
-    public class product
+    public class Product
     {
         public int Id { get; set; }
 
-        public string Product_name { get; set; }
 
-        public float Price { get; set; }
+        [DisplayName("Tên sản phẩm")]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
+        public string Name { get; set; }
 
+        [DisplayName("Giá (VNĐ)")]
+        [DisplayFormat(DataFormatString = "{0:n0} đ")]
+        public int Price { get; set; }
+
+
+        [DisplayName("Số Lượng")]
         public int Quantity { get; set; }
 
-        public int Product_type_id { get; set; }
-        public product_type Product_type { get; set; }
 
-        public List<invoice_detail> invoice_Details { get; set; }
+        [DisplayName("Ảnh Minh Họa")]
+        public string Image { get; set; }
+
+        [DisplayName("Loại sản phẩm")]
+        public int ProductTypeId { get; set; }
+
+        // Reference navigation property cho khóa ngoại đến ProductType
+        [DisplayName("Loại sản phẩm")]
+        public ProductType ProductType { get; set; }
+
+        public List<InvoiceDetail> Invoice_Details { get; set; }
+
+
+
+        public string Chip { get; set; }
+        public string RAM { get; set; }
+        public string ScreenSize { get; set; }
+
+        public string Pin { get; set; }
+
     }
 }

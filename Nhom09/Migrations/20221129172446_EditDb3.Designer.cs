@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nhom09.Data;
 
@@ -11,9 +12,11 @@ using Nhom09.Data;
 namespace Nhom09.Migrations
 {
     [DbContext(typeof(shopsamsungContext))]
-    partial class shopsamsungContextModelSnapshot : ModelSnapshot
+    [Migration("20221129172446_EditDb3")]
+    partial class EditDb3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

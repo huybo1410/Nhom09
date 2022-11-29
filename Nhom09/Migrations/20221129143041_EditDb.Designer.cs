@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nhom09.Data;
 
@@ -11,9 +12,11 @@ using Nhom09.Data;
 namespace Nhom09.Migrations
 {
     [DbContext(typeof(shopsamsungContext))]
-    partial class shopsamsungContextModelSnapshot : ModelSnapshot
+    [Migration("20221129143041_EditDb")]
+    partial class EditDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,23 +130,29 @@ namespace Nhom09.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("InvoiceId")
+                    b.Property<int>("Invoice_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Product_id")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int?>("invoiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("productId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("InvoiceId");
+                    b.HasIndex("invoiceId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("productId");
 
                     b.ToTable("InvoiceDetails");
                 });
@@ -156,17 +165,11 @@ namespace Nhom09.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Chip")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pin")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
@@ -177,12 +180,6 @@ namespace Nhom09.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<string>("RAM")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ScreenSize")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -221,21 +218,17 @@ namespace Nhom09.Migrations
 
             modelBuilder.Entity("Nhom09.Models.InvoiceDetail", b =>
                 {
-                    b.HasOne("Nhom09.Models.Invoice", "Invoice")
+                    b.HasOne("Nhom09.Models.Invoice", "invoice")
                         .WithMany("Invoice_Details")
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("invoiceId");
 
-                    b.HasOne("Nhom09.Models.Product", "Product")
+                    b.HasOne("Nhom09.Models.Product", "product")
                         .WithMany("Invoice_Details")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("productId");
 
-                    b.Navigation("Invoice");
+                    b.Navigation("invoice");
 
-                    b.Navigation("Product");
+                    b.Navigation("product");
                 });
 
             modelBuilder.Entity("Nhom09.Models.Product", b =>
