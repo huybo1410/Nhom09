@@ -7,12 +7,12 @@ namespace Nhom09.Data
     {
         public shopsamsungContext(DbContextOptions<shopsamsungContext> options) : base(options) { }
 
-        public DbSet<admin> admins { get; set; }
-        public DbSet<customer> customers { get; set; }
-        public DbSet<invoice> invoices { get; set; }
-        public DbSet<invoice_detail> invoice_details { get; set; }
-        public DbSet<product> products { get; set; }
-        public DbSet<product_type> product_types { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
 
     }
 }
