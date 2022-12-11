@@ -87,18 +87,17 @@
                 </div>
                 <div class="widgets_inner">
                   <ul class="list">
-                    <li>
-                                    <a href="#">Galaxy Z series</a>
-                    </li>
-                    <li>
-                                    <a href="#">Galaxy S series</a>
-                    </li>
-                    <li>
-                                    <a href="#">Galaxy A series</a>
-                    </li>
-                    <li>
-                                    <a href="#">Galaxy M series</a>
-                    </li>
+                    @foreach (var item in ViewBag.lsProductType)
+                    {
+                                    <li>
+                                        <a >
+                                            <a asp-action="CategoryProducts" asp-route-id="@item.Id">@item.Name</a>
+                                            
+                                        </a>
+
+                                    </li>
+                    }
+                    
                     
                   </ul>
                 </div>
