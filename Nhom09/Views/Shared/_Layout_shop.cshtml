@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@*inject SignInManager<IdentityUser> SignInManager;*@
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,6 +43,25 @@
                         </div>
                     </div>
                     
+                    <div class="col-lg-5">
+                       @* <partial name="_loginInfo"> </partial>*@
+                        <div class="float-right">
+                            <ul class="right_side">
+                                <li>
+                                    <a asp-area="" asp-controller="Register" asp-action="Index">
+                                        Đăng ký
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-controller="Login" asp-action="Index">
+                                        Đăng nhập
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

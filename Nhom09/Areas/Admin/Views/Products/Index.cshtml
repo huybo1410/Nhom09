@@ -1,0 +1,218 @@
+﻿@model IEnumerable<Nhom09.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Bin-It">
+    <meta property="og:url" />
+    <meta property="og:type" content="truongbinit" />
+    <meta property="og:title" content="Website TruongBin" />
+    <meta property="og:description" content="Wellcome to my Website" />
+
+    <title>Admin | Quản Lý Bán Hàng</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="~/css_admin/style.css">
+    <!-- Latest compiled and minified CSS -->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <!--===============================================================================================-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!--===============================================================================================-->
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+    <!--===============================================================================================-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/js_admin/admin.js"></script>
+</head>
+
+<body onload="time()">
+    <script>
+        swal("Xin Chào Admin", "Chúc Bạn 1 Ngày Tốt Lành Nhé", "");
+    </script>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i> QUẢN
+                    LÝ SẢN PHẨM
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a href="#home" data-toggle="tooltip" data-placement="bottom"
+                           title="SẢN PHẨM">SẢN PHẨM</a>
+                    </li>
+                    <li >
+                        <a href="#home" data-toggle="tooltip" data-placement="bottom"
+                           title="THỐNG KÊ">THỐNG KÊ</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN">
+                            <b>Tài Khoản</b>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown">
+                            <li>
+                                <a href="/index.html" data-toggle="tooltip" data-placement="bottom"
+                                   title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid al">
+        <div id="clock"></div>
+        <Br>
+        <p class="timkiemnhanvien"><b>TÌM KIẾM SẢN PHẨM:</b></p><Br><Br>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập tên sản phẩm cần tìm...">
+        <i class="fa fa-search" aria-hidden="true"></i>
+
+        <form action="">
+        </form>
+        <b>CHỨC NĂNG CHÍNH:</b><Br>
+        <a asp-action="Create" class="nv btn add-new" type="button" data-toggle="tooltip" data-placement="top"
+                title="Thêm sản phẩm">
+            <i class="fas fa-plus"></i>
+        </a>
+        <button class="nv" type="button" onclick="sortTable()" data-toggle="tooltip" data-placement="top"
+                title="Sắp xếp">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+        </button>
+        <div class="table-title">
+            <div class="row">
+            </div>
+
+        </div>
+        <table class="table table-bordered" id="myTable">
+            <thead>
+                <tr class="ex" >
+                    <th style="width:200px">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th style="width: auto">
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th style="width: auto">
+                        @Html.DisplayNameFor(model => model.Quantity)
+                    </th >
+                    <th style="width: auto">
+                        @Html.DisplayNameFor(model => model.Image)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductType)
+                    </th>
+                    <th style="width: auto">
+                        @Html.DisplayNameFor(model => model.Chip)
+                    </th>
+                    <th style="width: auto">
+                        @Html.DisplayNameFor(model => model.RAM)
+                    </th >
+                    <th style="width: auto">
+                        @Html.DisplayNameFor(model => model.ScreenSize)
+                    </th>
+                    <th style="width: auto">
+                        @Html.DisplayNameFor(model => model.Pin)
+                    </th>
+                    <th style="width: 200px">Chức năng</th>
+                </tr>
+            </thead>
+             <tbody>
+              
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                <img src="~/img/ImageSP/@item.Image" style="width:100px;">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RAM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScreenSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pin)
+            </td>
+            <td >
+                            <a asp-action="Edit" asp-route-id="@item.Id" title="Sửa" class="btn btn-danger" >
+                            <i class="fa fa-pencil"
+                               aria-hidden="true"></i>
+                        </a>|
+                            <a asp-action="Delete" asp-route-id="@item.Id" title="Xóa" class="btn btn-warning">
+                                <i class="fa fa-trash-o"
+                               aria-hidden="true"></i>
+                            </a>
+            </td>
+        </tr>
+}
+    </tbody>
+          
+        </table>
+        <div id="pageNavPosition" class="text-right"></div>
+        <script type="text/javascript">
+            var pager = new Pager('myTable', 5);
+            pager.init();
+            pager.showPageNav('pager', 'pageNavPosition');
+            pager.showPage(1);
+        </script>
+    </div>
+    <hr class="hr1">
+    <div class="container-fluid end">
+        <div class="row text-center">
+            <div class="col-lg-12 link">
+                <i class="fab fa-facebook-f" style="color: blue"></i>
+                <i class="fab fa-instagram" style="color: deeppink"></i>
+                <i class="fab fa-youtube" style="color: red"></i>
+                <i class="fab fa-google" style="color: black"></i>
+            </div>
+            <div class="col-lg-12">
+                2022 Sao chép của Phần mềm quản lý | Thiết kế bởi <a href="#">Nhóm 09</a>
+            </div>
+        </div>
+    </div>
+    <script src="jquery.min.js"></script>
+   
+</body>
+
+</html>
