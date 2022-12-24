@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nhom09.Models
 {
@@ -32,14 +33,14 @@ namespace Nhom09.Models
         public ProductType ProductType { get; set; }
 
         public List<InvoiceDetail> Invoice_Details { get; set; }
-
-
-
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
+        
         public string Chip { get; set; }
         public string RAM { get; set; }
         public string ScreenSize { get; set; }
 
         public string Pin { get; set; }
-
+        
     }
 }

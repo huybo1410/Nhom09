@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Nhom09.Areas.Admin.Models
+namespace Nhom09.Admin.Models
 {
     public class ProductType
     {

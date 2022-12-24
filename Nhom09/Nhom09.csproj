@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Areas\Admin\Views\products\Index.cshtml" />
+    <Content Remove="wwwroot\js_admin\admin.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js_admin\admin.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,14 +21,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Areas\Admin\Views\products\Index.cshtml" />
   </ItemGroup>
 
 </Project>

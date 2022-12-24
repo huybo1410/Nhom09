@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Nhom09.Areas.Admin.Models
+namespace Nhom09.Admin.Models
 {
     public class InvoiceDetail
     {
@@ -24,8 +24,8 @@ namespace Nhom09.Areas.Admin.Models
         public int InvoiceId { get; set; }
 
         // Reference navigation property cho khóa ngoại đến Invoice
-       // [DisplayName("Hóa đơn")]
-       // public Invoice Invoice { get; set; }
+        [DisplayName("Hóa đơn")]
+        public Invoice Invoice { get; set; }
 
     }
 }
