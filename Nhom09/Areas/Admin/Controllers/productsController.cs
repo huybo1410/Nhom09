@@ -161,47 +161,7 @@ namespace Nhom09.Areas.Admin.Controllers
             ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "Id", "Name", product.ProductTypeId);
             return View(product);
         }
-      /*  public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Quantity,Image,ImageFile,ExistingImagePath,ProductTypeId,Chip,RAM,ScreenSize,Pin")] Product product)
-        {
-            if (product.ImageFile == null || product.ImageFile.Length == 0)
-            {
-                return Content("File not selected");
-            }
-            //Save The Picture In folder
-            var path = Path.Combine(_environment.WebRootPath, "img/ImageSP", product.ImageFile.FileName);
-            using (FileStream stream = new FileStream(path, FileMode.Create))
-            {
-                await product.ImageFile.CopyToAsync(stream);
-                stream.Close();
-            }
-
-            //Bind Picture info to model
-            product.Image = product.ImageFile.FileName;
-
-            //Finding the member by its Id which we would update
-            var objProduct = _context.Products.Where(mId => mId.Id == product.Id).FirstOrDefault();
-
-            if (objProduct != null)
-            {
-                //Update the existing member with new value
-                objProduct.Name = product.Name;
-                objProduct!.Price = product.Price;
-                objProduct!.Quantity = product.Quantity;
-                objProduct!.Image = product.Image;
-                objProduct!.ProductTypeId = product.ProductTypeId;
-                objProduct!.Chip = product.Chip;
-                objProduct!.RAM = product.RAM;
-                objProduct!.ScreenSize = product.ScreenSize;
-                objProduct!.Pin = product.Pin;
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-           
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "Id", "Name", product.ProductTypeId);
-            return View(product);
-
-        }*/
-
+      
         // GET: Admin/Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
