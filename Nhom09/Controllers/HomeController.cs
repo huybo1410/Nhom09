@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Nhom09.Data;
 using Nhom09.Models;
 using System.Diagnostics;
 
@@ -13,8 +14,10 @@ namespace Nhom09.Controllers
             _logger = logger;
         }
 
+        
         public IActionResult Index()
         {
+            ViewBag.username = HttpContext.Session.GetString("username");
             return View();
         }
 
@@ -28,5 +31,7 @@ namespace Nhom09.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

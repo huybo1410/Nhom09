@@ -1,0 +1,41 @@
+﻿@*inject SignInManager<IdentityUser> SignInManager;
+*@
+
+@*if (SignInManager.IsSignedIn(User))
+{
+    <div class="float-right">
+        <ul class="right_side">
+            <li>
+                <a>
+                    Đăng ký
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Login" asp-action="">
+                    Đăng Xuat
+                </a>
+            </li>
+
+        </ul>
+    </div>
+}else{
+    <div class="float-right">
+        <ul class="right_side">
+            <li>
+                <a asp-area="" asp-controller="Register" asp-action="Index">
+                    Đăng ký
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Login" asp-action="Index">
+                    Đăng nhập
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+}
+*@
+
+

@@ -25,6 +25,12 @@ namespace Nhom09.Models
         [DisplayName("Ảnh Minh Họa")]
         public string Image { get; set; }
 
+
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
+
+
+
         [DisplayName("Loại sản phẩm")]
         public int ProductTypeId { get; set; }
 

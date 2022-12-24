@@ -2,7 +2,7 @@
 
 namespace Nhom09.Controllers
 {
-    public class ContactController : Controller
+    public class CartsController : Controller
     {
         public IActionResult Index()
         {

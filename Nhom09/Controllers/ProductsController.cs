@@ -15,7 +15,8 @@ namespace Nhom09.Controllers
         }
         public IActionResult Index()
         {
-
+            var lsProductType = _context.ProductTypes.ToList();
+            ViewBag.lsProductType = lsProductType;
             return View(_context.Products.ToList());
         }
 
@@ -33,6 +34,12 @@ namespace Nhom09.Controllers
             return View(product);
         }
 
-
+        public IActionResult CategoryProducts(int? id )
+        {
+            var lstProduct = _context.Products.Where(x => x.ProductTypeId == id).ToList();
+            var lsProductType = _context.ProductTypes.ToList();
+            ViewBag.lsProductType = lsProductType;
+            return View(lstProduct) ;
+        }
     }
 }
