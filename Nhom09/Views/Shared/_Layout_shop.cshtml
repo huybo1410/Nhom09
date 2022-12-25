@@ -1,4 +1,4 @@
-﻿@*inject SignInManager<IdentityUser> SignInManager;*@
+﻿
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,8 +53,13 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-area="" asp-controller="Login" asp-action="Index">
+                                    <a asp-area="" asp-controller="Home" asp-action="Login">
                                         Đăng nhập
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-controller="Home" asp-action="Logout">
+                                        Đăng xuất
                                     </a>
                                 </li>
 

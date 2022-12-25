@@ -1,0 +1,13 @@
+﻿@model Nhom09.Models.Customer
+@{
+    Layout = null;
+}
+<body>
+    @using (Html.BeginForm("Login","Home",FormMethod.Post)){
+        <a>@Html.AntiForgeryToken()</a>
+        <a>@Html.ValidationSummary(true)</a>
+        <a>@Html.TextBoxFor(m => m.Username, new {@class = "form-control",id = "Username",placeholder = "Nhap tai khoan ",required = "required",autofocus = true })</a>
+        <a>@Html.TextBoxFor(m => m.Password,new{@class = "form-control",type = "password",placeholder = "Nhap mat khau",required = ""})</a>
+        <button type="submit">Dang nhap</button>
+    }
+</body>

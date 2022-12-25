@@ -32,7 +32,7 @@ namespace Nhom09.Admin.Models
         [DisplayName("Loại sản phẩm")]
         public ProductType ProductType { get; set; }
 
-        public List<InvoiceDetail> Invoice_Details { get; set; }
+        //public List<InvoiceDetail> Invoice_Details { get; set; }
         
 
         [NotMapped]
