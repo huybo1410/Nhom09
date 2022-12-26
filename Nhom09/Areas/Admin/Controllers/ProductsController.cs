@@ -132,7 +132,7 @@ namespace Nhom09.Areas.Admin.Controllers
                 {
                     if (product.ImageFile != null)
                     {
-                        var fileName = product.Id.ToString() + Path.GetExtension(product.ImageFile.FileName);
+                        var fileName = product.Name + Path.GetExtension(product.ImageFile.FileName);
                         var uploadFolder = Path.Combine(_environment.WebRootPath, "img", "ImageSP");
                         var uploadPath = Path.Combine(uploadFolder, fileName);
                         using (FileStream fs = System.IO.File.Create(uploadPath))

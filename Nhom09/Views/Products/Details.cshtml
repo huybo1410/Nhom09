@@ -54,11 +54,11 @@
                     <ul class="list">
                         <li>
                             <a class="active" href="#">
-                                <span>Category</span> : @Html.DisplayFor(model => model.ProductTypeId)
+                                <span>Loại sản phẩm</span> : @Html.DisplayFor(model => model.ProductTypeId)
                             </a>
                         </li>
                         <li>
-                            <a href="#"> <span>Availibility</span> : In Stock</a>
+                            <a href="#"> <span>Tình trạng</span> : Còn hàng</a>
                         </li>
                     </ul>
                     <p>
@@ -68,13 +68,13 @@
                         the pleasant warm feeling during the winter.
                     </p>
                     <div class="product_count">
-                        <label for="qty">Quantity:</label>
+                        <label for="qty">Số lượng:</label>
                         <input type="text"
                                name="qty"
                                id="sst"
                                maxlength="12"
                                value="1"
-                               title="Quantity:"
+                               title="Số lượng:"
                                class="input-text qty" />
                         <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                                 class="increase items-count"
@@ -88,7 +88,7 @@
                         </button>
                     </div>
                     <div class="card_area">
-                        <a class="main_btn" href="#">Add to Cart</a>
+                        <a class="main_btn" href="#">Thêm giỏ hàng</a>
                        
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                    href="#home"
                    role="tab"
                    aria-controls="home"
-                   aria-selected="true">Description</a>
+                   aria-selected="true">Mô tả</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
@@ -117,7 +117,7 @@
                    href="#profile"
                    role="tab"
                    aria-controls="profile"
-                   aria-selected="false">Specification</a>
+                   aria-selected="false">Thông số kĩ thuật</a>
             </li>
            
             <li class="nav-item">
@@ -127,7 +127,7 @@
                    href="#review"
                    role="tab"
                    aria-controls="review"
-                   aria-selected="false">Reviews</a>
+                   aria-selected="false">Đánh giá</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -224,16 +224,16 @@
                                 <div class="box_total">
                                     <h5>Overall</h5>
                                     <h4>4.0</h4>
-                                    <h6>(03 Reviews)</h6>
+                                    <h6>(03 đánh giá)</h6>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="rating_list">
-                                    <h3>Based on 3 Reviews</h3>
+                                    <h3>Dựa trên 3 đánh giá</h3>
                                     <ul class="list">
                                         <li>
                                             <a href="#">
-                                                5 Star
+                                                5 sao
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -243,7 +243,7 @@
                                         </li>
                                         <li>
                                             <a href="#">
-                                                4 Star
+                                                4 sao
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -253,7 +253,7 @@
                                         </li>
                                         <li>
                                             <a href="#">
-                                                3 Star
+                                                3 sao
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -263,7 +263,7 @@
                                         </li>
                                         <li>
                                             <a href="#">
-                                                2 Star
+                                                2 sao
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -273,7 +273,7 @@
                                         </li>
                                         <li>
                                             <a href="#">
-                                                1 Star
+                                                1 sao
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -356,8 +356,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="review_box">
-                            <h4>Add a Review</h4>
-                            <p>Your Rating:</p>
+                            <h4>Thêm đánh giá</h4>
+                            <p>Đánh giá của bạn:</p>
                             <ul class="list">
                                 <li>
                                     <a href="#">
@@ -385,7 +385,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            <p>Outstanding</p>
+                            <p></p>
                             <form class="row contact_form"
                                   action="contact_process.php"
                                   method="post"
@@ -397,7 +397,7 @@
                                                class="form-control"
                                                id="name"
                                                name="name"
-                                               placeholder="Your Full name" />
+                                               placeholder="Tên của bạn" />
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -406,7 +406,7 @@
                                                class="form-control"
                                                id="email"
                                                name="email"
-                                               placeholder="Email Address" />
+                                               placeholder="Địa chỉ Email" />
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -415,7 +415,7 @@
                                                class="form-control"
                                                id="number"
                                                name="number"
-                                               placeholder="Phone Number" />
+                                               placeholder="Số điện thoại" />
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -424,14 +424,14 @@
                                                   name="message"
                                                   id="message"
                                                   rows="1"
-                                                  placeholder="Review"></textarea>
+                                                  placeholder="Mô tả đánh giá"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-right">
                                     <button type="submit"
                                             value="submit"
                                             class="btn submit_btn">
-                                        Submit Now
+                                        Gửi ngay
                                     </button>
                                 </div>
                             </form>

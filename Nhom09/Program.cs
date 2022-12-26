@@ -1,10 +1,13 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Nhom09.Data;
 
     var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddDistributedMemoryCache();
 // Add services to the container.
-builder.Services.AddSession();
+builder.Services.AddSession(cfg => {                    // Đăng ký dịch vụ Session
+    cfg.Cookie.Name = "shopsamsung";             // Đặt tên Session - tên này sử dụng ở Browser (Cookie)
+    cfg.IdleTimeout = new TimeSpan(0, 30, 0);    // Thời gian tồn tại của Session
+});
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<shopsamsungContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("shopsamsung")));

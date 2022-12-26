@@ -1,0 +1,138 @@
+﻿@model List<Nhom09.Models.CartItem>
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2>Thanh toán sản phẩm</h2>
+                    
+                </div>
+                <div class="page_link">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                    <a asp-area="" asp-controller="Checkouts" asp-action="Index">Thanh toán</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Checkout Area =================-->
+<section class="checkout_area section_gap">
+    <div class="container">
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Chi tiết đơn hàng</h3>
+                    <form class="row contact_form"
+                          action="CreateInvoice"
+                          method="post"
+                          novalidate="novalidate">
+                        <label>Họ tên người nhận<text style="color:red">*</text></label>
+                        <div class="col-md-12 form-group">
+                            <input type="text"
+                                   class="form-control"
+                                   id="first"
+                                   name="name" required />
+                            <span class="placeholder"
+                                  data-placeholder="Họ tên người nhận"></span>
+                        </div>
+                        <label>Số điện thoại<text style="color:red">*</text></label>
+                        <div class="col-md-12 form-group">
+                            <input  type="number"
+                                   class="form-control"
+                                   id="number"
+                                   name="number" maxlength="10" required/>
+                            <span class="placeholder"
+                                  data-placeholder="Số điện thoại"></span>
+                        </div>
+                        <label>Địa chỉ giao hàng<text style="color:red">*</text></label>
+                      
+                        <div class="col-md-12 form-group">
+                            <input type="text"
+                                   class="form-control"
+                                   id="address"
+                                   name="address" required
+                                    />
+                        </div>
+                        <label>Địa chỉ Email<text style="color:red">*</text></label>
+                        <div class="col-md-12 form-group">
+                            <input type="text"
+                                   class="form-control"
+                                   id="email"
+                                   name="compemailany" required/>
+                            <span class="placeholder"
+                                  data-placeholder="Địa chỉ Email"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="order_box">
+                        <h2>Đơn hàng của bạn</h2>
+                        
+                        <ul class="list">
+                            <li>
+                                <a href="#">
+                                    Sản phẩm
+                                    
+                                    <span>&nbsp;Tổng tiền</span>
+                                    <span>SL</span>
+                                </a>
+                            </li>
+                            </ul>
+                        
+                            
+                            @{
+                                decimal total = 0;
+                                    @foreach (var cartitem in Model)
+                                {
+                                    var thanhtien = cartitem.quantity * cartitem.product.Price;
+                                    total += thanhtien;
+                                    <ul class="list list_1">
+                                        <li>
+                                            <a href="#">
+                                                @cartitem.product.Name
+                                                <span class="middle">x @cartitem.quantity</span>
+                                            <span class="last">@(thanhtien.ToString("n0"))</span>
+                                            </a>
+                                        </li>
+                                        </ul>
+                                }
+                             
+                                    <ul class="list list_2">
+                                        <li>
+                                            <a href="#">
+                                                Tổng cộng
+                                            <span>@(total.ToString("n0"))</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                            }
+                            <div class="payment_item">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option5" name="selector" />
+                                <label for="f-option5">Thanh toán tiền mặt</label>
+                                <div class="check"></div>
+                            </div>
+                            <p>
+                                Vui lòng chuẩn bị đủ tiền mặt khi shipper giao hàng
+                            </p>
+                        </div>
+                        <div class="payment_item active">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option6" name="selector" />
+                                <label for="f-option6">Thẻ ngân hàng </label>
+                                <img src="img/product/single-product/card.jpg" alt="" />
+                                <div class="check"></div>
+                            </div>
+                        </div>
+                        <div class="creat_account">
+                            <input type="checkbox" id="f-option4" name="selector" />
+                            <label for="f-option4">Tôi đã đọc và chấp nhận  </label>
+                            <a href="#">điều khoản và điều kiện*</a>
+                        </div>
+                        <a class="main_btn" href="#">Tiếp tục thanh toán</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

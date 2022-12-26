@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Nhom09.Data;
 using Nhom09.Models;
 
@@ -41,5 +42,6 @@ namespace Nhom09.Controllers
             ViewBag.lsProductType = lsProductType;
             return View(lstProduct) ;
         }
+
     }
 }
