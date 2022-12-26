@@ -42,8 +42,9 @@ namespace Nhom09.Controllers
             ViewBag.lsProductType = lsProductType;
             return View(lstProduct) ;
         }
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Search(string searchString)
         {
+            
             if (_context.Products == null)
             {
                 return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
@@ -56,7 +57,8 @@ namespace Nhom09.Controllers
             {
                 product = product.Where(s => s.Name!.Contains(searchString));
             }
-
+            var lsProductType = _context.ProductTypes.ToList();
+            ViewBag.lsProductType = lsProductType;
             return View(await product.ToListAsync());
         }
 
