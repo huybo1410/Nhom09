@@ -1,14 +1,19 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Nhom09.Admin.Models;
 using Nhom09.Data;
 using Nhom09.Models;
 using Nhom09.Utilities;
 using System.Diagnostics;
-
+using System.Security.Claims;
 
 namespace Nhom09.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -19,16 +24,16 @@ namespace Nhom09.Controllers
             _logger = logger;
             _context = context;
         }
-        
 
-        [Authentication]
+
+        [AllowAnonymous]
         public IActionResult Index()
         {
             
             return View();
         }
 
-        [Authentication]
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
@@ -39,6 +44,7 @@ namespace Nhom09.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
 
         [HttpGet]
         public IActionResult Login()
@@ -67,8 +73,23 @@ namespace Nhom09.Controllers
                         a.Password.Equals(customer.Password)).FirstOrDefault();
                         if (status != null)
                         {
-                            HttpContext.Session.SetString("Username", status.Username);
-                            return RedirectToAction("Index");
+                            bool isValid = (status.Username == customer.Username && status.Password == customer.Password);
+                            if (isValid)
+                             {
+                                var identity = new ClaimsIdentity(new[] {new Claim(ClaimTypes.Name, customer.Username) }, 
+                                CookieAuthenticationDefaults.AuthenticationScheme);
+                                var principal = new ClaimsPrincipal(identity);
+                                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                                HttpContext.Session.SetString("Username", status.Username);
+                                return RedirectToAction("Index");
+
+                             }
+                            else
+                             {
+                                TempData["errorMessage"] = "Invalid password!";
+                                return View(customer);
+                             }
+                            
                         }
                     
                     
@@ -84,6 +105,7 @@ namespace Nhom09.Controllers
 
         public ActionResult Logout()
         {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Clear();
             HttpContext.Session.Remove("Username");
             return RedirectToAction("Index");
