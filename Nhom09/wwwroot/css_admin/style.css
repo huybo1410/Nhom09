@@ -141,13 +141,13 @@ ul li ul.dropdown li{
       border: 1px solid black;
       color: black;
   }
-thead tr th {
-    color: rgb(255, 255, 255);
-    font-size: 14px;
-    font-weight: 600;
-   background: #00FF99;
-    text-align: center !important;
-}
+  thead tr th{
+      color: rgb(255, 255, 255);
+      font-size: 14px;
+      font-weight: 600;
+      background: #006bcf;
+      text-align: center !important;
+  }
   tbody tr td{
       text-align: left;
       color: black;
