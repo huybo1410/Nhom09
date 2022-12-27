@@ -1,0 +1,96 @@
+﻿@model Customer
+
+
+<div id="wrapper__account">
+    <div class="row wrapper__account--top">
+        <div class="col-sm-12">
+            <h4 class="text--account-panel">
+                <i class="fa fa-cog"></i>
+                Xem thông tin tài khoản
+            </h4>
+           
+        </div>
+        
+    </div>
+    <div class="row wrapper__personal">
+        <div class="container line-vertical" id="line-vertical">
+            <h4 class="text-profile">Hồ sơ</h4>
+            <div class="col-sm-5">
+                <form class="row">
+                    <div class="col-sm-12">
+
+                        <div class="form-group has-error">
+                            <label>Tài Khoản</label>
+                            <input class="form-control" type="email" disabled="disabled" value="@User.Identity.Name"  />
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Họ và tên</label>
+                            <input class="form-control" type="text" disabled="disabled" asp-for="FullName" />
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại</label>
+                            <input class="form-control" type="text" disabled="disabled" asp-for="Phone" /><small class="pull-right">Example: 0xx xxx xxxx</small>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input class="form-control" type="text" disabled="disabled" asp-for="Address" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+           
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 text-center save-change-container">
+                        <a class="btn btn-base btn-md" asp-controller="Customer" asp-action="Edit" >Chỉnh sửa</a>
+                    </div>
+                </div>
+            </div>
+
+        </div><br />
+        
+        <div class="container">
+            <h4 class="text-profile">Password</h4>
+            <div class="col-sm-6">
+                <form class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group" id="show_old_password">
+                            <label>Password</label><a class="btn-change-password pull-right">
+                                <label>Change Password</label>
+                            </a>
+                            <input class="form-control" type="password" disabled="disabled" value="MessiVoDich" />
+                        </div>
+                    </div>
+                    <div id="hidden_change_password">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Old Password</label>
+                                <input class="form-control" id="old_password" type="password" />
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input class="form-control" type="password" />
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input class="form-control" type="password" />
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-md-9">
+                            <div class="form-group text-right"><a class="btn btn-base btn-block" id="save_new_password">Save new password</a></div>
+                        </div>
+                        <div class="col-sm-4 col-md-3 no-padding-left">
+                            <div class="form-group text-right"><a class="btn btn-gray btn-block" id="cancel">Cancel</a></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />

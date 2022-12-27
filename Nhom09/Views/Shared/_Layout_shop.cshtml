@@ -65,7 +65,7 @@
                             <div class="float-right">
                                 <ul class="right_side">
                                     <li>
-                                        <a asp-area="" asp-controller="Register" asp-action="Index">
+                                        <a asp-area="" asp-controller="Home" asp-action="Register">
                                             Đăng ký
                                         </a>
                                     </li>
@@ -125,9 +125,9 @@
                                             <i class="ti-shopping-cart"></i>
                                         </a>
                                     </li>
-
+                                    
                                     <li class="nav-item">
-                                        <a href="#" class="icons">
+                                        <a asp-controller="Customer" asp-action="info" asp-route-id="@User.Identity.Name" asp class="icons">
                                             <i class="ti-user" aria-hidden="true"></i>
                                         </a>
                                     </li>

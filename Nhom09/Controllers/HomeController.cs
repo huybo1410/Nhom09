@@ -78,6 +78,7 @@ namespace Nhom09.Controllers
                              {
                                 var identity = new ClaimsIdentity(new[] {new Claim(ClaimTypes.Name, customer.Username) }, 
                                 CookieAuthenticationDefaults.AuthenticationScheme);
+
                                 var principal = new ClaimsPrincipal(identity);
                                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                                 HttpContext.Session.SetString("Username", status.Username);
@@ -106,10 +107,52 @@ namespace Nhom09.Controllers
         public ActionResult Logout()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            var storedCookie = Request.Cookies.Keys;
+            foreach (var cookies in storedCookie)
+            {
+                Response.Cookies.Delete(cookies);
+            }
             HttpContext.Session.Clear();
             HttpContext.Session.Remove("Username");
             return RedirectToAction("Index");
         }
+
+
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(Customer customer)
+        {
+            try
+            {
+                var accounts = new Customer()
+                {
+                    Username = customer.Username,
+                    Password = customer.Password,
+                    Address = customer.Address,
+                    FullName = customer.FullName,
+                    Sex = customer.Sex,
+                    Phone = customer.Phone,
+                };
+                _context.Customers.Add(accounts);
+                _context.SaveChanges();
+                ViewBag.Status = 1;
+
+            }
+            catch
+            {
+                ViewBag.Status = 0;
+            }
+            return RedirectToAction("Index");
+        }
+
+       
 
     }
 }

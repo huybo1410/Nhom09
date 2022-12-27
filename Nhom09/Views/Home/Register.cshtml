@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Register";
-    Layout = "~/Views/Shared/_Layout_shop.cshtml";
+    Layout = null;
 }
 
 <div class="card-header">
@@ -11,9 +11,11 @@
     </h3>
 </div>
 <div class="card-body">
-    @using(Html.BeginForm("Index","Register",FormMethod.Post)){
+    @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+    {
 
-        if(ViewBag.Status != null){
+        if (ViewBag.Status != null)
+        {
             if (ViewBag.Status == 1)
             {
                 <span class="alert alert-success">Đăng ký thành công</span>
@@ -21,7 +23,8 @@
 
                 <br />
             }
-            else if (ViewBag.Status == 0){
+            else if (ViewBag.Status == 0)
+            {
                 <span class="alert alert-success">Lỗi !!!!</span>
                 <br />
 
@@ -82,5 +85,6 @@
 
 
 </div>
+
 
 
