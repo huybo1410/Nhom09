@@ -121,6 +121,7 @@ namespace Nhom09.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Quantity,Image,ImageFile,ProductTypeId,Chip,RAM,ScreenSize,Pin")] Product product)
         {
+           
             if (id != product.Id)
             {
                 return NotFound();
@@ -128,8 +129,10 @@ namespace Nhom09.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 try
                 {
+                    
                     if (product.ImageFile != null)
                     {
                         var fileName = product.Name + Path.GetExtension(product.ImageFile.FileName);
@@ -144,6 +147,12 @@ namespace Nhom09.Areas.Admin.Controllers
                         _context.Products.Update(product);
                         _context.SaveChanges();
                     }
+                    else
+                    {
+                        _context.Products.Update(product);
+                        _context.SaveChanges();
+                    }
+                   
                 }
                 catch (DbUpdateConcurrencyException)
                 {
